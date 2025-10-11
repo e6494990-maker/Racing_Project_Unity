@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,13 +7,14 @@ public class CheckpointManager : MonoBehaviour
 {
    [SerializeField] Checkpoint[] checkpoints;
     public Checkpoint[] Checkpoints => checkpoints;
-    void Start()
+
+    public static CheckpointManager Instance;
+
+    void Awake()
     {
-        
+        Instance = this;
     }
-
-
-    // Update is called once per frame
+ 
     void Update()
     {
         

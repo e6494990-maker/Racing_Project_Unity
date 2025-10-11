@@ -3,20 +3,26 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class ObjectAiMovment : MonoBehaviour
-    
+public class ObjectAiMovment : MonoBehaviour  
 {
     NavMeshAgent navagent;
-    // Start is called before the first frame update
+    private int curCheckPoint;
+    private int nextCheckPoint;
+    
     void Start()
     {
+        nextCheckPoint = 0;
         navagent = GetComponent<NavMeshAgent>();
-        
+        curCheckPoint = CheckpointManager.Instance.Checkpoints.Length - 1;
     }
 
-    // Update is called once per frame
+    
     void Update()
     {
-        
+        navagent.SetDestination(CheckpointManager.Instance.Checkpoints[nextCheckPoint].transform.position);
+        if (Vector3.Distance(transform.position, CheckpointManager.Instance.Checkpoints[nextCheckPoint].transform.position) < 6)
+        {
+
+        }
     }
 }
