@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using static UnityEditor.Progress;
 
@@ -12,6 +13,7 @@ public class CheckpointManager : MonoBehaviour
     private int curPlayerCheckpoint;
     private int nextPlayerCheckpoint;
     private int circleCounter;
+    [SerializeField] private TMP_Text place;
 
 
     public static CheckpointManager Instance;
@@ -54,6 +56,7 @@ public class CheckpointManager : MonoBehaviour
             }
         }
         Debug.Log(playerplace);
+        place.text = playerplace.ToString();
     }
 
 
