@@ -8,14 +8,20 @@ public class ObjectAiMovment : MonoBehaviour
     NavMeshAgent navagent;
     private int curCheckPoint;
     private int nextCheckPoint;
-    private int circlecounter;
-    
+    private int circleCounter;
+
+    public int CurCheckPoint => curCheckPoint;
+    public int NextCheckPoint => nextCheckPoint;
+    public int CircleCounter => circleCounter;
+
+
+
     void Start()
     {
         nextCheckPoint = 0;
         navagent = GetComponent<NavMeshAgent>();
         curCheckPoint = CheckpointManager.Instance.Checkpoints.Length - 1;
-        circlecounter = 1;
+        circleCounter = 1;
     }
 
     
@@ -28,14 +34,14 @@ public class ObjectAiMovment : MonoBehaviour
             if(curCheckPoint == CheckpointManager.Instance.Checkpoints.Length - 1)
             {
                 nextCheckPoint = 0;
-                circlecounter += 1;
+                circleCounter += 1;
             }
             else
             {
                 nextCheckPoint = curCheckPoint + 1;
             }
-            Debug.Log("Текущий чекпоинт: " + curCheckPoint);
-            Debug.Log("Текущий круг: " + circlecounter);
+            Debug.Log("Current checkpoint: " + curCheckPoint);
+            Debug.Log("Current circle: " + circleCounter);
         }
     }
 }

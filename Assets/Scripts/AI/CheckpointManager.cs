@@ -6,7 +6,8 @@ using static UnityEditor.Progress;
 
 public class CheckpointManager : MonoBehaviour
 {
-   [SerializeField] Checkpoint[] checkpoints;
+    [SerializeField] Checkpoint[] checkpoints;
+    [SerializeField] ObjectAiMovment[] AIcars;
     public Checkpoint[] Checkpoints => checkpoints;
     private int curPlayerCheckpoint;
     private int nextPlayerCheckpoint;
@@ -30,9 +31,31 @@ public class CheckpointManager : MonoBehaviour
                 nextPlayerCheckpoint += 1;
             }
         }
+        Debug.Log("Current P checkpoint: " + curPlayerCheckpoint);
+        Debug.Log("Current P circle: " + circleCounter);
+
         //Выводить в консоль текущий чекпоинт игрока, расстояние до следующего чекпоинта, круг игрока в консоль или на экран
     }
-    
+    private void Update()
+    {
+        int playerplace = 1;
+        for(int i = 0; i < AIcars.Length; i++)
+        {
+            if (AIcars[i].CircleCounter > circleCounter)
+            {
+                playerplace++;
+            }
+            else if (AIcars[i].CircleCounter == circleCounter)
+            {
+                if (AIcars[i].CurCheckPoint > curPlayerCheckpoint)
+                {
+                    playerplace++;
+                }
+            }
+        }
+        Debug.Log(playerplace);
+    }
+
 
     void Awake()
     {
