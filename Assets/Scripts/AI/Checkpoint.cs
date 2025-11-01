@@ -4,13 +4,25 @@ using UnityEngine;
 
 public class Checkpoint : MonoBehaviour
 {
-    // Start is called before the first frame update
+    private int ind;
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.TryGetComponent(out CarMovement cm))
+        {
+            CheckpointManager.Instance.GetPlayerCheckpoint(ind);
+        }
+    }
+    public void SetIndex(int index)
+    {
+        ind = index;
+    }
+    
     void Start()
     {
         
     }
 
-    // Update is called once per frame
+ 
     void Update()
     {
         

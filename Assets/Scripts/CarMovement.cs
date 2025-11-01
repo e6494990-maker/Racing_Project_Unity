@@ -53,8 +53,6 @@ public class CarMovement : MonoBehaviour
     {
         carRb = GetComponent<Rigidbody>();
         carRb.centerOfMass = centerOfMass;
-
-      
     }
 
     public void BlockMovement (bool IsNowBlocked) 
