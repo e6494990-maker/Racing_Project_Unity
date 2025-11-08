@@ -18,6 +18,7 @@ public class ObjectAiMovment : MonoBehaviour
 
     void Start()
     {
+        
         nextCheckPoint = 0;
         navagent = GetComponent<NavMeshAgent>();
         curCheckPoint = CheckpointManager.Instance.Checkpoints.Length - 1;
@@ -27,6 +28,10 @@ public class ObjectAiMovment : MonoBehaviour
     
     void Update()
     {
+        if (!TraficLights.Instance.TraficControll)
+        {
+            return;
+        }
         navagent.SetDestination(CheckpointManager.Instance.Checkpoints[nextCheckPoint].transform.position);
         if (Vector3.Distance(transform.position, CheckpointManager.Instance.Checkpoints[nextCheckPoint].transform.position) < 20)
         {
