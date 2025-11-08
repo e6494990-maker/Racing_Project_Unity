@@ -28,7 +28,7 @@ public class ObjectAiMovment : MonoBehaviour
     void Update()
     {
         navagent.SetDestination(CheckpointManager.Instance.Checkpoints[nextCheckPoint].transform.position);
-        if (Vector3.Distance(transform.position, CheckpointManager.Instance.Checkpoints[nextCheckPoint].transform.position) < 6)
+        if (Vector3.Distance(transform.position, CheckpointManager.Instance.Checkpoints[nextCheckPoint].transform.position) < 20)
         {
             curCheckPoint = nextCheckPoint;
             if(curCheckPoint == CheckpointManager.Instance.Checkpoints.Length - 1)

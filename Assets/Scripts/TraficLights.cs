@@ -2,13 +2,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class TraficLights : MonoBehaviour
 {
     [SerializeField] private MeshRenderer[] lights;
+
+    public bool TraficControll => traficontroll;
+    private bool traficontroll;
+    public static TraficLights Instance;
+    private void Awake()
+    {
+        Instance = this;
+        traficontroll = false;
+    }
+
+
+
     void Start()
     {
         StartCoroutine(traficlighting());
+    
     }
+    
+    
 
     IEnumerator traficlighting()
     {
@@ -31,7 +47,9 @@ public class TraficLights : MonoBehaviour
             lights[i].materials[0].color = Color.green;
             lights[i].materials[0].SetColor("_EmissionColor", Color.green);
         }
+        traficontroll = true;
     }
+    
     // Update is called once per frame
     void Update()
     {

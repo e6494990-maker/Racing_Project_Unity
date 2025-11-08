@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class CarMovement : MonoBehaviour
@@ -25,10 +26,10 @@ public class CarMovement : MonoBehaviour
     public float CurSpeed => carRb.velocity.magnitude * 3.6f;
 
     [SerializeField] float maxAcceleration = 1000f;
-    [SerializeField] float brakeAcceleration = 25000f;
+    [SerializeField] float brakeAcceleration = 12500f;
 
-    [SerializeField] float turnSensitivity = 1f;
-    [SerializeField] float maxSteerAngle = 35f;
+    [SerializeField] float turnSensitivity = 0.3f;
+    [SerializeField] float maxSteerAngle = 40f;
 
     [SerializeField] Vector3 centerOfMass;
     [SerializeField] Wheel[] wheels;
@@ -55,11 +56,6 @@ public class CarMovement : MonoBehaviour
         carRb.centerOfMass = centerOfMass;
     }
 
-    public void BlockMovement (bool IsNowBlocked) 
-    { 
-        blockMovement = IsNowBlocked;
-    }
-
     // Update is called once per frame
     void Update()
     {
@@ -69,10 +65,8 @@ public class CarMovement : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        if (blockMovement) 
-        {
-            return;
-        }
+        if (!TraficLights.Instance.TraficControll)
+        { return; }
         Move();
         Steer();
         Brake();
