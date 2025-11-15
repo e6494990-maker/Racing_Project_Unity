@@ -75,3 +75,4 @@ crashlytics-build.properties
 /[Aa]ssets/[Ss]treamingAssets/aa/*
 Assets/TrackPack/Track/Textures/road.psd
 Assets/TrackPack/Track/Textures/road_normal.png
+Assets/Scripts/AI/CheckpointManager.cs
